@@ -1,0 +1,8 @@
+.change {
+  text-decoration: underline;
+  font-style: italic;
+  color: darkslateblue;
+}
+.change:hover {
+  cursor: pointer;
+}
