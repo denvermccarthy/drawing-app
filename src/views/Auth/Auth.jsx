@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import {
-  signingInFragment,
-  signingUpFragment,
-} from '../../fragments/fragments';
+import AuthForm from '../../components/AuthForm/AuthForm';
 import styles from './auth.css';
 
 export default function Auth() {
@@ -12,10 +9,6 @@ export default function Auth() {
   return (
     <div>
       <h1>{textContent}</h1>
-      <form>
-        {isSigningIn ? signingInFragment : signingUpFragment}{' '}
-        <button type="submit">{textContent}</button>
-      </form>
       {isSigningIn ? (
         <p>
           New here? Please{' '}
@@ -31,6 +24,7 @@ export default function Auth() {
           </span>
         </p>
       )}
+      <AuthForm isSigningIn={isSigningIn} />
     </div>
   );
 }
