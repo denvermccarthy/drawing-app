@@ -10,8 +10,6 @@ export default function AuthForm({ isSigningIn }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formState;
-    console.log('email', email);
-    console.log('password', password);
     isSigningIn ? await signIn(email, password) : await signUp(email, password);
     // history.push('/');
   };

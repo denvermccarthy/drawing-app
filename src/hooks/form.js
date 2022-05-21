@@ -7,7 +7,6 @@ export function useForm(inputs = {}) {
     const { name, value, type, checked } = event.target;
 
     setFormState((prevState) => {
-      console.log(prevState);
       return {
         ...prevState,
         [name]: type === 'checkbox' ? checked : value,
