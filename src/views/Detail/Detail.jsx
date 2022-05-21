@@ -5,7 +5,6 @@ import { useDrawings } from '../../hooks/drawings';
 
 export default function Detail() {
   const { drawing } = useDrawings();
-  console.log('drawing', drawing);
   if (!drawing) return <div>loading...</div>;
 
   const { title, description } = drawing;

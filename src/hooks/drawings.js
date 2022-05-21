@@ -1,7 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { DrawingsContext } from '../context/DrawingsContext/DrawingsContext';
-import { fetchDrawings, updateDrawing } from '../services/drawings';
+import {
+  createDrawing,
+  fetchDrawings,
+  updateDrawing,
+} from '../services/drawings';
 
 export const useDrawings = () => {
   const context = useContext(DrawingsContext);
@@ -35,6 +39,9 @@ export const useDrawings = () => {
     await updateDrawing(payload);
     dispatch({ type: 'EDIT', payload });
   };
-  console.log(drawings);
-  return { drawings, drawing, editHandler };
+  const createHandler = async (drawing) => {
+    const payload = await createDrawing(drawing);
+    dispatch({ type: 'CREATE', payload });
+  };
+  return { drawings, drawing, editHandler, createHandler };
 };

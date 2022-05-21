@@ -7,6 +7,8 @@ const reducer = (state, action) => {
   switch (type) {
     case 'FETCH':
       return [...payload];
+    case 'CREATE':
+      return [payload, ...state];
     case 'EDIT':
       return state.map((drawing) =>
         drawing.id === payload.id ? payload : drawing
