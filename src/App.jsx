@@ -4,30 +4,31 @@ import Detail from './views/Detail/Detail';
 import EditDetail from './views/Detail/EditDetail';
 import CreateDrawing from './views/Create/CreateDrawing';
 import Home from './views/Home/Home';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 export default function App() {
   return (
     <>
       <h1>App</h1>
       <Switch>
-        <Route path="/drawings/create">
+        <PrivateRoute path="/drawings/create">
           <CreateDrawing />
-        </Route>
-        <Route path="/drawings/:id/edit">
+        </PrivateRoute>
+        <PrivateRoute path="/drawings/:id/edit">
           <EditDetail />
-        </Route>
-        <Route path="/drawings/:id">
+        </PrivateRoute>
+        <PrivateRoute path="/drawings/:id">
           <Detail />
-        </Route>
-        <Route path="/drawings">
+        </PrivateRoute>
+        <PrivateRoute path="/drawings">
           <Home />
-        </Route>
+        </PrivateRoute>
         <Route path="/auth">
           <Auth />
         </Route>
-        <Route path="/">
+        <PrivateRoute path="/">
           <Redirect to="/drawings" />
-        </Route>
+        </PrivateRoute>
       </Switch>
     </>
   );

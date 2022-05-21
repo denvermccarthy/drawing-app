@@ -11,7 +11,7 @@ export default function AuthForm({ isSigningIn }) {
     e.preventDefault();
     const { email, password } = formState;
     isSigningIn ? await signIn(email, password) : await signUp(email, password);
-    // history.push('/');
+    history.push('/');
   };
   const signingUpFragment = (
     <>
