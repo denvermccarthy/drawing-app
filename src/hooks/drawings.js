@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { DrawingsContext } from '../context/DrawingsContext/DrawingsContext';
-import { fetchDrawings } from '../services/drawings';
+import { fetchDrawings, updateDrawing } from '../services/drawings';
 
 export const useDrawings = () => {
   const context = useContext(DrawingsContext);
@@ -24,5 +24,17 @@ export const useDrawings = () => {
     return drawings.find((draw) => draw.id === Number(id));
   };
   const drawing = findDrawing();
-  return { drawings, drawing };
+
+  const editHandler = async (drawing, formState) => {
+    const { title, description } = formState;
+    const payload = {
+      ...drawing,
+      title: title || drawing.title,
+      description: description || drawing.description,
+    };
+    await updateDrawing(payload);
+    dispatch({ type: 'EDIT', payload });
+  };
+  console.log(drawings);
+  return { drawings, drawing, editHandler };
 };

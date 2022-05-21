@@ -1,6 +1,8 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Auth from './views/Auth/Auth';
 import Detail from './views/Detail/Detail';
+import EditDetail from './views/Detail/EditDetail';
+import CreateDrawing from './views/Create/CreateDrawing';
 import Home from './views/Home/Home';
 
 export default function App() {
@@ -8,6 +10,12 @@ export default function App() {
     <>
       <h1>App</h1>
       <Switch>
+        <Route path="/drawings/create">
+          <CreateDrawing />
+        </Route>
+        <Route path="/drawings/:id/edit">
+          <EditDetail />
+        </Route>
         <Route path="/drawings/:id">
           <Detail />
         </Route>
