@@ -9,6 +9,7 @@ export default function EditDetail() {
   if (!drawing) return <div>loading...</div>;
 
   const { title, description } = drawing;
+
   const submitHandler = async (e) => {
     e.preventDefault();
     await editHandler(drawing, formState);

@@ -16,3 +16,8 @@ export const updateDrawing = async (drawing) => {
     .match({ id: drawing.id });
   return parseData(resp);
 };
+
+export const deleteDrawing = async ({ id }) => {
+  const resp = await client.from('drawings').delete().match({ id }).single();
+  return parseData(resp);
+};

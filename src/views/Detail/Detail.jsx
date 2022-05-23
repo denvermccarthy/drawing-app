@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDrawings } from '../../hooks/drawings';
 
 export default function Detail() {
-  const { drawing, isOwnDrawing } = useDrawings();
+  const { drawing, isOwnDrawing, deleteHandler } = useDrawings();
   if (!drawing) return <div>loading...</div>;
 
   const { title, description } = drawing;
@@ -12,7 +12,11 @@ export default function Detail() {
     <div>
       <Link to={'/drawings'}>Home</Link>Detail
       {isOwnDrawing ? (
-        <Link to={`/drawings/${drawing.id}/edit`}>Edit</Link>
+        <>
+          {' '}
+          <Link to={`/drawings/${drawing.id}/edit`}>Edit</Link>
+          <p onClick={() => deleteHandler(drawing)}>🗑️</p>
+        </>
       ) : (
         <Link to={`/drawings/copy/${drawing.id}`}>Copy</Link>
       )}

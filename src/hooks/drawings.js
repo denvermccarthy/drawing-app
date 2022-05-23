@@ -3,6 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { DrawingsContext } from '../context/DrawingsContext/DrawingsContext';
 import {
   createDrawing,
+  deleteDrawing,
   fetchDrawings,
   updateDrawing,
 } from '../services/drawings';
@@ -48,5 +49,17 @@ export const useDrawings = () => {
     dispatch({ type: 'CREATE', payload });
     history.push('/');
   };
-  return { drawings, drawing, isOwnDrawing, editHandler, createHandler };
+  const deleteHandler = async (drawing) => {
+    const payload = await deleteDrawing(drawing);
+    dispatch({ type: 'DELETE', payload });
+    history.push('/');
+  };
+  return {
+    drawings,
+    drawing,
+    isOwnDrawing,
+    editHandler,
+    createHandler,
+    deleteHandler,
+  };
 };

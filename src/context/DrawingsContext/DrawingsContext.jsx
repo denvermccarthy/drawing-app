@@ -13,6 +13,8 @@ const reducer = (state, action) => {
       return state.map((drawing) =>
         drawing.id === payload.id ? payload : drawing
       );
+    case 'DELETE':
+      return state.filter((drawing) => drawing.id !== payload.id);
     default:
       break;
   }
