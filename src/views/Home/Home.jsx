@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ListItem from '../../components/Home/ListItem';
 import { useDrawings } from '../../hooks/drawings';
 import { fetchDrawings } from '../../services/drawings';
@@ -13,7 +14,7 @@ export default function Home() {
   return (
     <>
       <h1>Drawings</h1>
-      <div>add drawing+</div>
+      <Link to={'/drawings/create'}>add a drawing</Link>
       {drawings.map((item) => (
         <ListItem key={item.id} {...{ item }} />
       ))}

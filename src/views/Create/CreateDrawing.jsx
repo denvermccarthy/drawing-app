@@ -2,13 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDrawings } from '../../hooks/drawings';
 import { useForm } from '../../hooks/form';
+import { useUser } from '../../hooks/user';
 
 export default function CreateDrawing() {
   const { createHandler } = useDrawings();
+  const {
+    user: { id },
+  } = useUser();
   const { formState, handleChange } = useForm({ title: '', description: '' });
   const submitHandler = async (e) => {
     e.preventDefault();
-    const user_id = '94664201-4117-4de5-adf3-6c6b5655a050';
+    const user_id = id;
     const resp = await createHandler({ ...formState, user_id });
   };
   return (

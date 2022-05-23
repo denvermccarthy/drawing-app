@@ -23,3 +23,13 @@ export default function useAuth() {
   };
   return { signIn, signUp, signOut, user };
 }
+
+export function useUser() {
+  const context = useContext(UserContext);
+  if (context === undefined)
+    throw new Error(`useUser must be used in a userProvider`);
+
+  const { user, setUser } = context;
+
+  return { user };
+}

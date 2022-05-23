@@ -1,15 +1,18 @@
 import { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { DrawingsContext } from '../context/DrawingsContext/DrawingsContext';
 import {
   createDrawing,
   fetchDrawings,
   updateDrawing,
 } from '../services/drawings';
+import { useUser } from './user';
 
 export const useDrawings = () => {
   const context = useContext(DrawingsContext);
+  const { user } = useUser();
   const { id } = useParams();
+  const history = useHistory();
 
   if (context === undefined) {
     throw new Error(`Drawings Context must be used in a DrawingsProvider`);
@@ -28,6 +31,7 @@ export const useDrawings = () => {
     return drawings.find((draw) => draw.id === Number(id));
   };
   const drawing = findDrawing();
+  const isOwnDrawing = drawing?.user_id === user.id;
 
   const editHandler = async (drawing, formState) => {
     const { title, description } = formState;
@@ -42,6 +46,7 @@ export const useDrawings = () => {
   const createHandler = async (drawing) => {
     const payload = await createDrawing(drawing);
     dispatch({ type: 'CREATE', payload });
+    history.push('/');
   };
-  return { drawings, drawing, editHandler, createHandler };
+  return { drawings, drawing, isOwnDrawing, editHandler, createHandler };
 };
