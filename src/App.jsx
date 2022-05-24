@@ -11,6 +11,9 @@ export default function App() {
     <>
       <h1>App</h1>
       <Switch>
+        <PrivateRoute path="/drawings/copy/:id">
+          <CreateDrawing />
+        </PrivateRoute>
         <PrivateRoute path="/drawings/create">
           <CreateDrawing />
         </PrivateRoute>

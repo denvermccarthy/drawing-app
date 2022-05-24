@@ -43,6 +43,7 @@ export const useDrawings = () => {
     };
     await updateDrawing(payload);
     dispatch({ type: 'EDIT', payload });
+    history.push('/');
   };
   const createHandler = async (drawing) => {
     const payload = await createDrawing(drawing);
@@ -54,7 +55,15 @@ export const useDrawings = () => {
     dispatch({ type: 'DELETE', payload });
     history.push('/');
   };
+
+  const createFormObject = () => {
+    if (!drawing) return;
+    let title = drawing.title ?? '';
+    let description = drawing.description ?? '';
+    return { title, description };
+  };
   return {
+    createFormObject,
     drawings,
     drawing,
     isOwnDrawing,
