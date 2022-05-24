@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router-dom';
 import { DrawingsContext } from '../context/DrawingsContext/DrawingsContext';
 import {
@@ -14,6 +15,7 @@ export const useDrawings = () => {
   const { user } = useUser();
   const { id } = useParams();
   const history = useHistory();
+  const { pathname } = useLocation();
 
   if (context === undefined) {
     throw new Error(`Drawings Context must be used in a DrawingsProvider`);
@@ -57,6 +59,7 @@ export const useDrawings = () => {
   };
 
   const createFormObject = () => {
+    if (pathname === '/drawings/create') return { title, description };
     if (!drawing) return;
     let title = drawing.title ?? '';
     let description = drawing.description ?? '';
